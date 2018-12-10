@@ -6,22 +6,37 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  
+export class AppComponent implements OnInit {
+
   title = 'TestHello';
 
-  constructor(private http:HttpClient){
-
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
-    
-    let data = {userName: 'Doramon', passWord: 'dora1234'}
-    this.http.post<any>('http://localhost:3000/api', data).subscribe(result=>{
-      alert(JSON.stringify(result));
-    });
+    console.log("onOninit Work");
+    // let data = {userName: 'Doramon123', passWord: 'dora1234'}
+    // this.http.post<any>('http://localhost:3000/api', data).subscribe(result=>{
+    //   alert(JSON.stringify(result));
+    // });
 
   }
+
+  onSubmit(userName: string) {
+
+    console.log('userName ==> ' + userName);
+
+    let data = {userName: userName, passWord: 'dora1234'};
+
+    console.log('data ==> ' + JSON.stringify(data));
+
+    alert(JSON.stringify(data));
+    this.http.post<any>('http://localhost:3000/api', data).subscribe(result => {
+      alert(JSON.stringify(result));
+    });
+  }
+
+
 
 }
 
